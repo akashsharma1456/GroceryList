@@ -12,12 +12,12 @@ router.get('/', async (req,res)=> {
     res.render('404')
   }
 })
+
 //Get Single Post
 router.get('/post/:Id',async(req, res)=> {
   let Id = req.params.Id
   let result = await posts_model.get_post_by_id(Id)
   if(result) {
-   // res.render('post', result)
     res.render('post',{
       title:'Grocery List',
       result: result})
@@ -29,14 +29,14 @@ router.get('/post/:Id',async(req, res)=> {
 router.get('/posts', async (req,res)=>{
   res.redirect('/')
 })
+
 //Get Post Submission Form
 router.get('/post',(req,res) => {
   res.render('new-post',{title: "Add Post"})
 })
+
 //Post New Post
 router.post('/post', async (req,res)=>{
-  //console.log(req.body,title)
-  //res.send({content:"All good!"})
   let Item_Name = req.body.Item_Name;
   let Quantity = req.body.Quantity;
   let Price = req.body.Price;
@@ -49,5 +49,21 @@ router.post('/post', async (req,res)=>{
   }
 })
 
+// Delete Post by Id
+router.get('/post/delete/:Id',async(req,res) => {
+  let Id = req.params.Id;
+  let test = await posts_model.get_post_by_id(Id)
+  if(test){
+    let result = await posts_model.delete_post_by_id(Id)
+    if(result){
+      console.log("The Item Is Deleted");
+      res.redirect('/')
+    } else {
+      res.send({msg: "Something went wrong"})
+    }
+  }else{
+    res.send({msg: "Something went wrong"})
+  }
+})
 module.exports = router;
 
