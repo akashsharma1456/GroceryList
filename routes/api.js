@@ -24,8 +24,6 @@ router.post('/post',async (req,res) => {
     let Price = req.body.Price;
     let added = await posts_model.add_post( Item_Name, Quantity, Price )
 
-    console.log(`result is : \n${added}\n\n`)
-
     if (added) {
         res.send({mes: "Post added to database"})
     } else {

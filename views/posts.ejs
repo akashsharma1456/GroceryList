@@ -1,4 +1,23 @@
 <%-include('./parts/head')%>
-<h1> <%= title %> </h1>
-<p> <%= posts %> </p>
+<table border="1">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Item_Name</th>
+            <th>Quantity</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+    <% posts.forEach((post) => {%>
+        <tr>
+            <td><%= post.Id%></td>
+            <td><%= post.Item_Name%></td>
+            <td><%= post.Quantity%></td>
+            <td><%= post.Price%></td>
+        </tr>
+    <%})%>
+
+    </tbody>
+</table>
 <%-include('./parts/tail')%>
