@@ -53,8 +53,15 @@ router.get( '/posts', async (req,res) =>{
 })
 
 // Delete Post by Id
-router.delete('/posts',async(req,res) =>{
-    let result = await posts_model.delete_post_by_id()
-    console.log(result);
+router.delete('/post/:Id',async(req,res) =>{
+    let Id = req.params.Id;
+    let result = await posts_model.delete_post_by_id(Id)
+    if(result){
+        console.log("The Item Is Deleted");
+        let UpdatedList = await posts_model.get_all_posts()
+        res.send(UpdatedList)
+    } else {
+        res.send({msg: "Something went wrong"})
+    }
 })
 module.exports = router;

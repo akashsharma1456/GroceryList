@@ -12,11 +12,11 @@ exports.add_post = async (ItemName, Quantity, Price) => {
     return msg
 }
 //Delete Post By Id
-exports.delete_post_by_id = async () => {
+exports.delete_post_by_id = async (Id) => {
     let stmnt = db.prepare('DELETE FROM GroceryList WHERE Id = ?')
     let result
     try {
-        result = await stmnt.delete(Id)
+        result = await stmnt.run(Id)
     } catch (e) {
         console.error(e.message)
         return null
