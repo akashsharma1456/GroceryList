@@ -11,9 +11,23 @@ exports.add_post = async (ItemName, Quantity, Price) => {
     }
     return msg
 }
+//Delete Post By Id
+exports.delete_post_by_id = async () => {
+    let stmnt = db.prepare('DELETE FROM GroceryList WHERE Id = ?')
+    let result
+    try {
+        result = await stmnt.delete(Id)
+    } catch (e) {
+        console.error(e.message)
+        return null
+    }
+    return result
+}
+
+
 //Get Post By Id
 exports.get_post_by_id = async (Id) => {
-    let stmnt = db.prepare('SELECT* FROM GroceryList WHERE Id=?')
+    let stmnt = db.prepare('SELECT * FROM GroceryList WHERE Id=?')
     let result
     try {
         result = await stmnt.get(Id)

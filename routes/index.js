@@ -17,7 +17,10 @@ router.get('/post/:Id',async(req, res)=> {
   let Id = req.params.Id
   let result = await posts_model.get_post_by_id(Id)
   if(result) {
-    res.render('post', result)
+   // res.render('post', result)
+    res.render('post',{
+      title:'Grocery List',
+      result: result})
   } else {
     res.render('404')
   }

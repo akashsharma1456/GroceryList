@@ -30,9 +30,10 @@ router.post('/post',async (req,res) => {
         res.send({msg: "Something went wrong"})
     }
 })
+
 //Get Post by Id
 router.get('/post/:Id', async (req,res)=> {
-    let Id = req.body.Id
+    let Id = req.params.Id;
     let result = await posts_model.get_post_by_id(Id)
     if(result) {
         res.send(result)
@@ -40,6 +41,7 @@ router.get('/post/:Id', async (req,res)=> {
         res.send({msg: "Something went wrong"})
     }
 })
+
 // Get all Posts
 router.get( '/posts', async (req,res) =>{
     let results = await posts_model.get_all_posts()
@@ -48,5 +50,11 @@ router.get( '/posts', async (req,res) =>{
     } else {
         res.send({msg: "Something went wrong."})
     }
+})
+
+// Delete Post by Id
+router.delete('/posts',async(req,res) =>{
+    let result = await posts_model.delete_post_by_id()
+    console.log(result);
 })
 module.exports = router;
