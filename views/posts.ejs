@@ -19,9 +19,14 @@
             <td><%= post.Created_on%></td>
         </tr>
     <%})%>
-
-
-
     </tbody>
 </table>
+<br><br>
+<form action = '/post'>
+    <button type="submit">Click here For adding new Item in List.</button>
+</form>
+<br><br>
+<form action = '/delete'>
+    <button type="submit">Click here For Delete Item from List.</button>
+</form>
 <%-include('./parts/tail')%>

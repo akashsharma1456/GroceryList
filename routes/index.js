@@ -49,21 +49,26 @@ router.post('/post', async (req,res)=>{
   }
 })
 
-// Delete Post by Id
-router.get('/post/delete/:Id',async(req,res) => {
-  let Id = req.params.Id;
+// Get Post Delete Form
+router.get('/delete',(req,res) => {
+    res.render('delete',{title: "DELETE POST"})
+})
+// Delete Post By Id
+router.post('/delete', async (req,res)=>{
+  let Id = req.body.Id;
   let test = await posts_model.get_post_by_id(Id)
-  if(test){
+  if(test) {
     let result = await posts_model.delete_post_by_id(Id)
-    if(result){
+    if (result) {
       console.log("The Item Is Deleted");
       res.redirect('/')
     } else {
       res.send({msg: "Something went wrong"})
     }
   }else{
-    res.send({msg: "Something went wrong"})
+  res.send({msg: "Something went wrong"})
   }
+
 })
 module.exports = router;
 
