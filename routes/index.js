@@ -9,7 +9,7 @@ router.get('/', async (req,res)=> {
     res.render('posts',{
       title:'Grocery List',
       posts: posts,
-    total: total})
+      total: total})
   } else {
     res.render('404')
   }
