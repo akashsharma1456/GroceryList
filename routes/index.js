@@ -1,18 +1,19 @@
 var express = require('express');
 var router = express.Router();
-var posts_model = require('../models/posts')
+var posts_model = require('../models/posts');
 /* GET home page. */
 router.get('/', async (req,res)=> {
   let posts = await posts_model.get_all_posts()
+  let total = await posts_model.total()
   if(posts) {
     res.render('posts',{
       title:'Grocery List',
-      posts: posts})
+      posts: posts,
+    total: total})
   } else {
     res.render('404')
   }
 })
-
 //Get Single Post
 router.get('/post/:Id',async(req, res)=> {
   let Id = req.params.Id

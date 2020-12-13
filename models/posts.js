@@ -50,3 +50,15 @@ exports.get_all_posts = async () => {
     }
     return result
 }
+//Sum of Price
+exports.total = async () => {
+    let stmnt = db.prepare('SELECT SUM (Price) FROM GroceryList')
+    let total
+    try {
+        total = await stmnt.get().toString()
+    } catch (e) {
+        console.error(e.message)
+        return null
+    }
+    return total
+}

@@ -51,7 +51,15 @@ router.get( '/posts', async (req,res) =>{
         res.send({msg: "Something went wrong."})
     }
 })
-
+// get sum of price
+router.get( '/posts', async (req,res) =>{
+    let total = await posts_model.total()
+    if (total) {
+        res.send(total)
+    } else {
+        res.send({msg: "Something went wrong."})
+    }
+})
 // Delete Post by Id
 router.delete('/post/delete/:Id',async(req,res) =>{
     let Id = req.params.Id;
